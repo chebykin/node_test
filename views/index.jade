@@ -1,17 +1,35 @@
 extends layout
 
 block content
-  h1= title
-  if post
-    h4 Post accepted:
-    span title:
-    strong(class='title')= post.title
-    span message:
-    strong(class='message')= post.message
-  else
-    form(method='post')
-      h4 submit next form ...
-      input(name='title')
-      br
-      textarea(name='message')
-      button(type=submit) Submit form
+  .container
+    .row
+      .edit-area.col-xs-4
+        h1= title
+        if post
+          div.well.well-sm
+            h4 Post accepted:
+            dl
+              dd Title:
+              dt.title= post.title
+            dl
+              dd Message:
+              dt.message= post.message
+        else
+          form(method='post', role='form')
+            h4 submit next form ...
+            .form-goroup
+              input.form-control(name='title')
+            br
+            .form-group
+              textarea.form-control(name='message')
+            button.btn.btn-success(type=submit) Submit form
+      .list-area.col-xs-4
+        h3 All messages
+        table.table
+          tr
+            th Title
+            th Message
+          - for (var i = 0; i < all.length; i++)
+            tr
+              td= all[i].title
+              td= all[i].message

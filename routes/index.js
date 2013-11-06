@@ -27,9 +27,16 @@ exports.index = function (req, res) {
                 post: saved_post
             };
 
-            res.render('index', render_options);
+            rnd(render_options)
         });
     } else {
-        res.render('index', {title: 'Express test app'});
+        rnd({title: 'Express test app'})
+    }
+
+    function rnd (reder_options) {
+        Post.find({}, function (err, posts) {
+            reder_options.all = posts;
+            res.render('index', reder_options);
+        });
     }
 };
