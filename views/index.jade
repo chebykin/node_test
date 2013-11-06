@@ -2,4 +2,16 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  if post
+    h4 Post accepted:
+    span title:
+    strong(class='title')= post.title
+    span message:
+    strong(class='message')= post.message
+  else
+    form(method='post')
+      h4 submit next form ...
+      input(name='title')
+      br
+      textarea(name='message')
+      button(type=submit) Submit form
