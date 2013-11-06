@@ -8,7 +8,7 @@ var http = require('http');
 var path = require('path');
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/node_test');
+mongoose.connect(process.env.MONGOHQ_URL || 'mongodb://localhost/node_test');
 
 var app = express();
 
