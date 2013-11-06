@@ -6,6 +6,7 @@ var Post = require('../lib/post');
 exports.index = function (req, res) {
     var title = req.body.title,
         message = req.body.message,
+        drop = req.body.drop,
         locals = {},
         saved_post;
 
@@ -22,20 +23,20 @@ exports.index = function (req, res) {
                 saved_post = data;
             }
 
-            var render_options = {
-                title: 'Express test app',
-                post: saved_post
-            };
-
-            rnd(render_options)
+            rnd({post: saved_post})
+        });
+    } else if (req.method === 'POST' && drop === 'y') {
+        Post.remove({}, function (err) {
+            rnd({})
         });
     } else {
-        rnd({title: 'Express test app'})
+        rnd({})
     }
 
     function rnd (reder_options) {
         Post.find({}, function (err, posts) {
             reder_options.all = posts;
+            reder_options.title = 'Express test app';
             res.render('index', reder_options);
         });
     }

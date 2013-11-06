@@ -14,6 +14,7 @@ block content
             dl
               dd Message:
               dt.message= post.message
+            a(href='/') add more
         else
           form(method='post', role='form')
             h4 submit next form ...
@@ -33,3 +34,6 @@ block content
             tr
               td= all[i].title
               td= all[i].message
+        form(method='post')
+          input(type='hidden', name='drop', value='y')
+          button.btn.btn-danger(type=submit) Drop all items
