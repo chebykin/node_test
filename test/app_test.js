@@ -22,7 +22,7 @@ describe('app', function () {
     });
 
     it ('should be listening on 3011 port', function () {
-        var headers = defaultGetOptions('/');
+        var headers = defaultGetOptions();
         http.get(headers, function (res) {
             res.statusCode.should.eql(200);
         });
@@ -31,6 +31,7 @@ describe('app', function () {
 });
 
 function defaultGetOptions(path) {
+    path = path || '/';
     var options;
     options = {
         "host": "localhost",
