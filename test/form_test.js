@@ -20,7 +20,7 @@ describe('page content', function () {
         var browser = this.browser;
         browser.success.should.be.ok;
         browser.text('h4').should.eql('submit next form ...');
-        browser.text('form button').should.eql('Submit form');
+        browser.text('form button.btn-success').should.eql('Submit form');
     });
 
     it('should accept form', function (done) {
